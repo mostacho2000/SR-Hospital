@@ -20,6 +20,10 @@ public class Computadora1 : MonoBehaviour
             {
                 camaraJugador.enabled = !camaraJugador.enabled;
                 camaraComputadora.enabled = !camaraComputadora.enabled;
+
+                // Activar o desactivar el cursor del mouse
+                Cursor.visible = camaraComputadora.enabled;
+                Cursor.lockState = camaraComputadora.enabled ? CursorLockMode.None : CursorLockMode.Locked;
             }
         }
     }
