@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using StarterAssets;
 
 public class Computadora1 : MonoBehaviour
 {
@@ -10,20 +11,38 @@ public class Computadora1 : MonoBehaviour
     private bool estaCercaDelJugador;
     private bool panelActivado;
 
+    private FirstPersonController fpsController;
+
+    private void Start()
+    {
+        fpsController = camaraJugador.GetComponentInParent<FirstPersonController>();
+    }
+
     private void Update()
     {
-        // Verificar si se presiona la tecla "E" y el jugador está cerca
         if (Input.GetKeyDown(KeyCode.E) && estaCercaDelJugador)
         {
-            // Cambiar entre las cámaras
             if (camaraJugador != null && camaraComputadora != null)
             {
-                camaraJugador.enabled = !camaraJugador.enabled;
-                camaraComputadora.enabled = !camaraComputadora.enabled;
+                bool isUsingComputer = camaraComputadora.enabled;
 
-                // Activar o desactivar el cursor del mouse
-                Cursor.visible = camaraComputadora.enabled;
-                Cursor.lockState = camaraComputadora.enabled ? CursorLockMode.None : CursorLockMode.Locked;
+                camaraJugador.enabled = isUsingComputer;
+                camaraComputadora.enabled = !isUsingComputer;
+
+                Cursor.visible = !isUsingComputer;
+                Cursor.lockState = isUsingComputer ? CursorLockMode.Locked : CursorLockMode.None;
+
+                if (fpsController != null)
+                {
+                    if (isUsingComputer)
+                    {
+                        fpsController.RestoreSpeeds();
+                    }
+                    else
+                    {
+                        fpsController.SetSpeedsToZero();
+                    }
+                }
             }
         }
     }
@@ -34,8 +53,6 @@ public class Computadora1 : MonoBehaviour
         {
             Debug.Log("EnteredSpace");
             estaCercaDelJugador = true;
-
-            // Activar el panel al detectar al jugador cerca
             panelADesactivar.SetActive(true);
             panelActivado = true;
         }
@@ -47,8 +64,6 @@ public class Computadora1 : MonoBehaviour
         {
             Debug.Log("ExitSpace");
             estaCercaDelJugador = false;
-
-            // Desactivar el panel al salir el jugador
             panelADesactivar.SetActive(false);
             panelActivado = false;
         }
