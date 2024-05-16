@@ -4,5 +4,17 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MenuInicio.unity
+    guid: 87a3e7e3c5d3e874a81a36fa963b7d33
+  - enabled: 1
+    path: Assets/Scenes/CharlySRHospital.unity
+    guid: 73a9d67c26de32a479af35ff304a7f2f
+  - enabled: 1
+    path: Assets/Scenes/ExitMenu.unity
+    guid: dfe1d7b54be68d444aace11abe5f189c
+  - enabled: 1
+    path: Assets/Scenes/Creditos.unity
+    guid: 86db15ad5bcbd1747979a11fd8509bed
   m_configObjects: {}
