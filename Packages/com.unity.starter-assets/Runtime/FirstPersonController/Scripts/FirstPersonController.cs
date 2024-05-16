@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
+
 	[RequireComponent(typeof(CharacterController))]
 #if ENABLE_INPUT_SYSTEM
 	[RequireComponent(typeof(PlayerInput))]
@@ -94,6 +95,10 @@ namespace StarterAssets
 				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
 			}
 		}
+///
+		private float originalMoveSpeed;
+		private float originalSprintSpeed;
+		private float originalRotationSpeed;
 
 		private void Start()
 		{
@@ -102,14 +107,33 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM
 			_playerInput = GetComponent<PlayerInput>();
 #else
-			Debug.LogError( "Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
+        Debug.LogError("Starter Assets package is missing dependencies. Please use Tools/Starter Assets/Reinstall Dependencies to fix it");
 #endif
 
 			// reset our timeouts on start
 			_jumpTimeoutDelta = JumpTimeout;
 			_fallTimeoutDelta = FallTimeout;
+
+			// Almacenar valores originales
+			originalMoveSpeed = MoveSpeed;
+			originalSprintSpeed = SprintSpeed;
+			originalRotationSpeed = RotationSpeed;
 		}
 
+		public void SetSpeedsToZero()
+		{
+			MoveSpeed = 0f;
+			SprintSpeed = 0f;
+			RotationSpeed = 0f;
+		}
+
+		public void RestoreSpeeds()
+		{
+			MoveSpeed = originalMoveSpeed;
+			SprintSpeed = originalSprintSpeed;
+			RotationSpeed = originalRotationSpeed;
+		}
+///
 		private void Update()
 		{
 			JumpAndGravity();

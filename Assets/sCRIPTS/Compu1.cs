@@ -9,19 +9,17 @@ public class Compu1 : MonoBehaviour
 
     private void Update()
     {
-        // Detectar si el jugador está cerca de la computadora y presiona la tecla de interacción
+        // Detectar si el jugador está cerca de la computadora 
         if (cercaComputadora && Input.GetKeyDown(teclaInteraccion))
         {
-            // Realizar la acción deseada al presionar la tecla de interacción
             AccionInteraccion();
         }
     }
 
     private void AccionInteraccion()
     {
-        // Realizar la acción deseada al interactuar con la computadora
+        
         Debug.Log("Interactuando con la computadora...");
-        // Puedes agregar aquí la lógica para cambiar de cámara, activar una pantalla, etc.
     }
 
     private void OnTriggerEnter(Collider other)
