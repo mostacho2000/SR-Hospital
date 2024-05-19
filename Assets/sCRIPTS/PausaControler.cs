@@ -1,0 +1,93 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using StarterAssets;
+
+public class PausaControler : MonoBehaviour
+{
+    public GameObject panelADesactivar;
+    public Camera camaraJugador;
+    public Camera camaraPausa;
+    private bool estaCercaDelJugador;
+    private bool panelActivado;
+    private bool camaraPausaActiva;
+
+    private FirstPersonController fpsController;
+
+    private void Start()
+    {
+        fpsController = camaraJugador.GetComponentInParent<FirstPersonController>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && estaCercaDelJugador)
+        {
+            ToggleCamera();
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && !camaraPausaActiva && estaCercaDelJugador)
+        {
+            // Aquí puedes colocar el código para la funcionalidad que debe ejecutarse con la tecla E cuando la cámara de pausa no está activa.
+            Debug.Log("Tecla E presionada y cámara de pausa no está activa.");
+        }
+    }
+
+    private void ToggleCamera()
+    {
+        if (camaraJugador != null && camaraPausa != null)
+        {
+            camaraPausaActiva = !camaraPausaActiva;
+
+            camaraJugador.enabled = !camaraPausaActiva;
+            camaraPausa.enabled = camaraPausaActiva;
+
+            Cursor.visible = camaraPausaActiva;
+            Cursor.lockState = camaraPausaActiva ? CursorLockMode.None : CursorLockMode.Locked;
+
+            if (fpsController != null)
+            {
+                if (camaraPausaActiva)
+                {
+                    fpsController.SetSpeedsToZero();
+                }
+                else
+                {
+                    fpsController.RestoreSpeeds();
+                }
+            }
+
+            Debug.Log("Cámara cambiada. camaraJugador: " + camaraJugador.enabled + ", camaraPausa: " + camaraPausa.enabled);
+        }
+    }
+
+    public void SimulateEscapePress()
+    {
+        if (estaCercaDelJugador)
+        {
+            ToggleCamera();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("EnteredSpace");
+            estaCercaDelJugador = true;
+            panelADesactivar.SetActive(true);
+            panelActivado = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("ExitSpace");
+            estaCercaDelJugador = false;
+            panelADesactivar.SetActive(false);
+            panelActivado = false;
+        }
+    }
+}
