@@ -5,47 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class ControladorMenu : MonoBehaviour
 {
-    public void jugar()
+    [SerializeField]AudioSource _audio;
+    public void ChangeScene(string name)
     {
-
-        SceneManager.LoadScene("CharlySRHospital");
-       
-
-    }
-    public void controles()
-    {
-
-        SceneManager.LoadScene("controles");
-
-    }
-    public void INICIO()
-    {
-
-        SceneManager.LoadScene("MenuInicio");
-
-    }
-
-    public void Creditos()
-    {
-
-        SceneManager.LoadScene("Creditos");
-
-    }
-
-    public void MenuSalir()
-    {
-        SceneManager.LoadScene("ExitMenu");
-        
-        
-
-
+        StartCoroutine(Time(name));
     }
 
     public void Salir()
     {
-
+        _audio.Play();
         Debug.Log("Salir...");
         Application.Quit();
-
+    }
+    IEnumerator Time(string nameScene)
+    {
+        _audio.Play();
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(nameScene);
     }
 }

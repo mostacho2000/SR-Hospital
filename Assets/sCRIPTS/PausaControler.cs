@@ -11,11 +11,13 @@ public class PausaControler : MonoBehaviour
     private bool estaCercaDelJugador;
     private bool panelActivado;
     private bool camaraPausaActiva;
+    AudioSource _audio;
 
     private FirstPersonController fpsController;
 
     private void Start()
     {
+        _audio = GetComponent<AudioSource>();
         fpsController = camaraJugador.GetComponentInParent<FirstPersonController>();
     }
 
@@ -66,6 +68,7 @@ public class PausaControler : MonoBehaviour
         if (estaCercaDelJugador)
         {
             ToggleCamera();
+            _audio.Play();
         }
     }
 
