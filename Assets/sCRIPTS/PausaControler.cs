@@ -6,6 +6,7 @@ using StarterAssets;
 public class PausaControler : MonoBehaviour
 {
     public GameObject panelADesactivar;
+    public GameObject gameObjectADesactivar; // Nuevo GameObject para activar/desactivar
     public Camera camaraJugador;
     public Camera camaraPausa;
     private bool estaCercaDelJugador;
@@ -51,6 +52,12 @@ public class PausaControler : MonoBehaviour
                 {
                     fpsController.RestoreSpeeds();
                 }
+            }
+
+            // Activar/desactivar el nuevo GameObject
+            if (gameObjectADesactivar != null)
+            {
+                gameObjectADesactivar.SetActive(camaraPausaActiva);
             }
 
             Debug.Log("Cámara cambiada. camaraJugador: " + camaraJugador.enabled + ", camaraPausa: " + camaraPausa.enabled);
