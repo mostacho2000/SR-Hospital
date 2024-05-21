@@ -6,7 +6,7 @@ using StarterAssets;
 public class PausaControler : MonoBehaviour
 {
     public GameObject panelADesactivar;
-    public GameObject gameObjectADesactivar; // Nuevo GameObject para activar/desactivar
+    public GameObject gameObjectADesactivar; 
     public Camera camaraJugador;
     public Camera camaraPausa;
     private bool estaCercaDelJugador;
@@ -54,7 +54,7 @@ public class PausaControler : MonoBehaviour
                 }
             }
 
-            // Activar/desactivar el nuevo GameObject
+            
             if (gameObjectADesactivar != null)
             {
                 gameObjectADesactivar.SetActive(camaraPausaActiva);
