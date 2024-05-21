@@ -27,12 +27,6 @@ public class PausaControler : MonoBehaviour
         {
             ToggleCamera();
         }
-
-        if (Input.GetKeyDown(KeyCode.E) && !camaraPausaActiva && estaCercaDelJugador)
-        {
-            // Aquí puedes colocar el código para la funcionalidad que debe ejecutarse con la tecla E cuando la cámara de pausa no está activa.
-            Debug.Log("Tecla E presionada y cámara de pausa no está activa.");
-        }
     }
 
     private void ToggleCamera()
