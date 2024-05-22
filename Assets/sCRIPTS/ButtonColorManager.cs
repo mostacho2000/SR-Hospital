@@ -9,6 +9,9 @@ public class ButtonColorManager : MonoBehaviour
     private Color[] currentColors; // Colores actuales de los botones
     private int[] currentColorIndices; // Índices actuales de colores para cada botón
 
+    [SerializeField] private GameObject objectToDestroy; // Referencia al GameObject que se debe destruir
+    [SerializeField] private Image panelToHighlight; // Referencia al Panel que se debe iluminar de verde
+
     private void Start()
     {
         currentColors = new Color[buttons.Length];
@@ -49,7 +52,20 @@ public class ButtonColorManager : MonoBehaviour
             }
         }
         Debug.Log("All buttons are in the correct order and color!");
+
+        // Destruir el GameObject cuando el patrón de colores es correcto
+        if (objectToDestroy != null)
+        {
+            Destroy(objectToDestroy);
+        }
+
+        // Iluminar el panel de verde cuando el patrón de colores es correcto
+        if (panelToHighlight != null)
+        {
+            panelToHighlight.color = Color.green;
+        }
     }
+
     private bool ColorsAreEqual(Color a, Color b, float tolerance = 0.01f)
     {
         return Mathf.Abs(a.r - b.r) < tolerance &&

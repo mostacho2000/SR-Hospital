@@ -4,7 +4,9 @@ using TMPro;
 
 public class PasswordManager : MonoBehaviour
 {
-    [SerializeField]public TextMeshProUGUI inputDisplay; // Referencia al Text que muestra la entrada del usuario
+    [SerializeField] public TextMeshProUGUI inputDisplay; // Referencia al Text que muestra la entrada del usuario
+    [SerializeField] private GameObject objectToDestroy; // Referencia al GameObject que se debe destruir
+    [SerializeField] private Image panelToHighlight; // Referencia al Panel que se debe iluminar de verde
     private string enteredPassword = "";
     public string correctPassword; // La contraseña correcta
 
@@ -27,14 +29,26 @@ public class PasswordManager : MonoBehaviour
         if (enteredPassword == correctPassword)
         {
             Debug.Log("Password Correct");
-            // Aquí puedes agregar el código para lo que sucede cuando la contraseña es correcta
+            // Destruir el GameObject cuando la contraseña es correcta
+            if (objectToDestroy != null)
+            {
+                Destroy(objectToDestroy);
+            }
+
+            // Iluminar el panel de verde cuando la contraseña es correcta
+            if (panelToHighlight != null)
+            {
+                panelToHighlight.color = Color.green;
+            }
+
+            // Aquí puedes agregar más código para lo que sucede cuando la contraseña es correcta
         }
         else
         {
             Debug.Log("Password Incorrect");
             enteredPassword = "";
             inputDisplay.text = "";
-            // Aquí puedes agregar el código para lo que sucede cuando la contraseña es incorrecta
+            // Aquí puedes agregar más código para lo que sucede cuando la contraseña es incorrecta
         }
     }
 
