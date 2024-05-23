@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ControladorMenu : MonoBehaviour
 {
     [SerializeField]AudioSource _audio;
+    bool cambio;
     public void ChangeScene(string name)
     {
         StartCoroutine(Time(name));
@@ -22,5 +23,11 @@ public class ControladorMenu : MonoBehaviour
         _audio.Play();
         yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(nameScene);
+    }
+    public void inicio()
+    {
+        SceneManager.LoadScene("OmarSRHospital");
+        Cursor.visible = cambio;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

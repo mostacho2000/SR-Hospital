@@ -746,6 +746,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicForScenes1to4: {fileID: 8300000, guid: f78aaa8f55f2a5547b247f2a42f293ab, type: 3}
   musicForScene5: {fileID: 8300000, guid: f4771f8388a93db41a0fcf81c7739ca6, type: 3}
+  halfVolume: 0.5
 --- !u!82 &1323428163
 AudioSource:
   m_ObjectHideFlags: 0

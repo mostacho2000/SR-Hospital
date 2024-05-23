@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class Timmerreflejar : MonoBehaviour
 {
     public TextMeshProUGUI tiempoText;
+    
 
     private void Start()
     {
@@ -21,4 +22,5 @@ public class Timmerreflejar : MonoBehaviour
         Timer.instance.PauseTimer(); // Pausar el cronómetro
         SceneManager.LoadScene(sceneName);
     }
+   
 }
