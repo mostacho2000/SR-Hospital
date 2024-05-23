@@ -20,7 +20,7 @@ public class ControladorMenu : MonoBehaviour
     IEnumerator Time(string nameScene)
     {
         _audio.Play();
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.4f);
         SceneManager.LoadScene(nameScene);
     }
 }
