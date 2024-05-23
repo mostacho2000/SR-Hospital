@@ -14584,7 +14584,7 @@ MonoBehaviour:
   inputDisplay: {fileID: 651296588}
   objectToDestroy: {fileID: 591204359}
   panelToHighlight: {fileID: 1496278450}
-  correctPassword: 1234
+  correctPassword: 9384
 --- !u!82 &698863882
 AudioSource:
   m_ObjectHideFlags: 0
